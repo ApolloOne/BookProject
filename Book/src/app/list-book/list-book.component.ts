@@ -12,16 +12,16 @@ export class ListBookComponent implements OnInit {
   books: BookModule[];
   constructor(
     private bookService: BookService,
-    private http:HttpClient
+    private http: HttpClient
   ) { }
 
   ngOnInit() {
     this.getAllData();
   }
   getAllData() {
-    this.bookService.getdataFormRestAPI().subscribe((res:BookModule[])=>{
-      this.books=res;
+    this.bookService.getdataFormRestAPI().subscribe((res: BookModule[]) => {
+      this.books = res;
     });
   }
-  
+
 }
