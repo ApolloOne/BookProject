@@ -1,14 +1,13 @@
 var mongoose = require('mongoose');
 const books=require('../model/Book.Module');
-var value1=new books({
+const Users=require('../model/User.Module');
+var value2=new Users({
     _id:new mongoose.Types.ObjectId(),
-    name:"Than Thoai Hi Lap",
-    price:2000,
-    author:'Hellenismos',
-    category:'than thoai'
-});
-value1.save().then(result=>{
+    Email:'apollo@gmail.com',
+    Password:'123456'
+})
+value2.save().then(result=>{
     console.log(result);
 }).catch(err=>{
     console.error(err);
-});
+})

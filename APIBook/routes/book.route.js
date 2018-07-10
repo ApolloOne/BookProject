@@ -17,23 +17,11 @@ routes.get('/', (req, res) => {
         });
     });
 });
+
       // GET value detail with _id
 routes.get('/:id',(req,res) => {
     const _id=req.params.id;
-    // Cach 1: Using MongodbClient
-    // mongodbClient.connect(url,(err,database)=>{
-    //     assert.equal(null,err);
-    //     const MyDb = database.db('Books');
-    //     var books = MyDb.collection('books');
-    //     books.findOne( {_id: ObjectId(_id)},
-    //         (err,data)=>{
-    //         database.close();
-    //         res.json(data);
-    //     })
-    // })
-    // Cach 2:Using Mongoose
-    BookModel.findById(_id,(err,data)=>{
-        if(err) return res.status(err.status()).json({err:err.message,status:err.status})
+    BookModel.findById(_id).then(data=>{
         return res.json(data);
     })
 })
@@ -46,23 +34,31 @@ routes.post('/',(req,res)=>{
         author: req.body.author,
         category: req.body.category
     });
-    Book.save().then((value)=>{
-        return res.json({
-            mess:'them du lieu thanh cong',
-            data:value
-        })
-    }).catch(err=>{
-        return res.json({
-            status:err.status,
-            err:err.message,
-        })
+    BookModel.findOne(name).then((result) => {
+        if(result) {
+            return res.json({
+                mess:'da co ban ghi nay',
+                data:result
+            })
+        } else {
+            Book.save().then((value)=>{
+                return res.json({
+                    mess:'them du lieu thanh cong',
+                    data:value
+                })
+            }).catch(err=>{
+                return res.json({
+                    status:err.status,
+                    err:err.message,
+                })
+            })
+        }
     })
 })
 // Xoa ban ghi
 routes.delete('/:id',(req,res)=>{
     const _id=req.params.id;
-    BookModel.deleteOne(_id,(err)=>{
-         if(err) return res.status(err.status()).json({err:err.message,status:err.status})
+    BookModel.findByIdAndDelete(_id).then((data)=>{
         return res.json({
             mess:'Da xoa ban ghi id'+_id
         })
@@ -77,8 +73,7 @@ routes.patch('/:id',(req,res)=>{
         author:req.body.author,
         category:req.body.category
     })
-    BookModel.findOneAndUpdate(_id,updateBook,(err,data)=>{
-        if(err) return res.status(err.status()).json({err:err.message,status:err.status})
+    BookModel.findOneAndUpdate(_id,updateBook).then(data => {
         return res.json({
             mess:'Da cap nhat gia tri ',
             data:data

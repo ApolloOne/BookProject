@@ -1,0 +1,12 @@
+.main{
+    width: 80%;
+    margin: auto;
+}
+ul li{
+    float: right;
+    padding: 0 10px;
+}
+li a{
+    color:white;
+    text-decoration: none;
+}
