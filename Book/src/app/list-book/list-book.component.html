@@ -1,16 +1,26 @@
-<table border="1">
+<table class="table table-striped main">
   <tr>
-    <th >ID</th>
-    <th >name</th>
-    <th >price</th>
-    <th >author</th>
-    <th >category</th>
+    <td>STT</td>
+    <th>ID</th>
+    <th>name</th>
+    <th>price</th>
+    <th>author</th>
+    <th>category</th>
+    <th style="text-align: center">Edit</th>
+    <th style="text-align: center">Remove</th>
   </tr>
-  <tr *ngFor="let book of books" >
+  <tr *ngFor="let book of books">
+    <td>{{stt+1}}</td>
     <td>{{book._id}}</td>
     <td>{{book.name}}</td>
     <td>{{book.price}}</td>
     <td>{{book.author}}</td>
     <td>{{book.category}}</td>
+    <td>
+      <a mat-button color="primary" [routerLink]="['/edit',book._id]">Edit</a>
+    </td>
+    <td>
+      <a mat-button color="warn" (click)="delete(book._id)">Remove</a>
+    </td>
   </tr>
 </table>

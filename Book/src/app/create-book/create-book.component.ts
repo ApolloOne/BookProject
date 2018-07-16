@@ -20,7 +20,7 @@ export class CreateBookComponent implements OnInit {
       category:valueCategory.value
     };
     console.log(book);
-     this.bookService.AdddataFormRESTAPI(book).subscribe((res)=>{
+     this.bookService.AdddataToRESTAPI(book).subscribe((res)=>{
         return this.thongbao='Da goi den service thanh cong';
      });
   }

@@ -23,10 +23,14 @@ export class BookService {
       catchError(err => of([]))
     );
   }
-  AdddataFormRESTAPI(book:Object): Observable<BookModule[]> {
+  AdddataToRESTAPI(book: Object): Observable<BookModule[]> {
     return this.http.post<BookModule[]>(this.URLRESTAPI, book, this.httpOption).pipe(
-      tap(result => console.log('Da nap du lieu thanh cong')),
-      catchError(err=>of([]))
+      tap(result => console.log('Da nap du lieu thanh cong'))
     );
+  }
+  RemoveToRESTAPI(id: string): Observable<BookModule> {
+    return this.http.delete<BookModule>(this.URLRESTAPI + "/" + id, this.httpOption).pipe(
+      tap(result => console.log('xoa du lieu thanh cong'))
+    )
   }
 }
