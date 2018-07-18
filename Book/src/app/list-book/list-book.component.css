@@ -1,5 +1,14 @@
+
 .main{
     width: 80%;
     margin: auto;
     margin-top: 20px;
+}
+
+.container{
+    width: 100%;
+    margin-top: 30px;
+}
+table{
+    margin: auto;
 }

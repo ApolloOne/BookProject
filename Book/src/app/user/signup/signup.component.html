@@ -1,0 +1,23 @@
+<form #FormSignup="ngForm" (ngSubmit)="onLogin(FormSignup)">
+  <h1>Sign-up</h1>
+  <mat-card>
+    <mat-form-field class="example-full-width">
+      <input matInput type="email" #nameLogin  ngModel name="login" placeholder="UserName" required>
+      <mat-error *ngIf="!nameLogin.invalid">Please enter email</mat-error>
+    </mat-form-field>
+    <div>
+      <button mat-stroked-button type="button">Image</button>
+      <input type="file">
+    </div>
+    <mat-form-field class="example-full-width">
+      <input matInput type="password" #namePassword ngModel name="password" placeholder="Password" required>
+      <mat-error *ngIf="!namePassword.invalid">Please enter password</mat-error>
+    </mat-form-field>
+    <mat-radio-group>
+      <mat-radio-button value="Man">Man</mat-radio-button>
+      <mat-radio-button value="Woman">Woman</mat-radio-button>
+      <mat-radio-button value="Orther">Orther</mat-radio-button>
+    </mat-radio-group> <br> <br>
+    <button mat-raised-button color="accent" type="submit" [disabled]="FormSignup.invalid">Signup</button>
+  </mat-card>
+</form>
